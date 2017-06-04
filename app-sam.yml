@@ -15,3 +15,16 @@ Resources:
         Variables:
           DYNAMODB_REGION: us-west-1
       Role: arn:aws:iam::091144949931:role/microserviceRole
+  PhobiaPost:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: org.sample.aws.serverless.phobias.PhobiaPost
+      Runtime: java8
+      CodeUri: s3://phobias-skill/phobias-1.0-SNAPSHOT.jar
+      Description: Create one phobia
+      Timeout: 30
+      MemorySize: 1024
+      Environment:
+        Variables:
+          DYNAMODB_REGION: us-west-1
+      Role: arn:aws:iam::091144949931:role/microserviceRole

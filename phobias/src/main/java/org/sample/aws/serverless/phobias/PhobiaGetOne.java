@@ -15,10 +15,12 @@ public class PhobiaGetOne implements RequestHandler<Phobia, String> {
 
     @Override
     public String handleRequest(Phobia request, Context context) {
+        
+        System.out.println("Request: " + request);
 
         Item outcome = DynamoDBUtil.getTable().getItem(new PrimaryKey("meaning", request.getMeaning()));
         if (null != outcome) {
-            return outcome.toJSONPretty();
+            return outcome.getString("word");
         }
         return null;
     }

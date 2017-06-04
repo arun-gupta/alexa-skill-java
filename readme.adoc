@@ -28,6 +28,15 @@ aws cloudformation deploy \
 +
 ```
 {
+    "meaning": "air",
+    "word": "aerophobia"
+}
+```
++
+.. Sample data for GET:
++
+```
+{
     "meaning": "air"
 }
 ```

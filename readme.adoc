@@ -1,0 +1,42 @@
+= Phobias Alexa Skill
+
+== Setup DynamoDB
+
+. Create a DynamoDB table `Phobias`
+
+== Create S3 bucket
+
+. Create bucket: `aws s3 mb s3://phobias-skill --region us-west-1`.
+
+== Lambda Functions
+
+. Create and upload a deployment package: `mvn -f books/pom.xml package install`
+
+=== Using Serverless Application Model (SAM)
+
+. Deploy SAM
++
+```
+aws cloudformation deploy \
+--template-file app-sam.yml \
+--stack-name phobias-skill \
+--region us-west-1
+```
++
+. Test
+.. Sample data for POST:
++
+```
+{
+    "meaning": "air"
+}
+```
++
+. Delete SAM
++
+```
+aws cloudformation delete-stack \
+--stack-name phobias-skill \
+--region us-west-1
+```
+

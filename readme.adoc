@@ -8,44 +8,38 @@
 
 . Create bucket: `aws s3 mb s3://phobias-skill --region us-west-1`.
 
-== Lambda Functions
+== Create Deployment Package
 
 . Create and upload a deployment package: `mvn -f books/pom.xml package install`
 
-=== Using Serverless Application Model (SAM)
+== Deploy Lambda Function using Serverless Application Model (SAM)
 
-. Deploy SAM
-+
 ```
 aws cloudformation deploy \
 --template-file app-sam.yml \
 --stack-name phobias-skill \
 --region us-west-1
 ```
-+
-. Test
-.. Sample data for POST:
-+
+
+== Test Lambda Function
+
+=== GET
+
 ```
-{
-    "meaning": "air",
-    "word": "aerophobia"
-}
+aws lambda invoke --function-name PhobiaGetOne --payload '{ "meaning": "air" }' out
 ```
-+
-.. Sample data for GET:
-+
+
+=== POST
+
 ```
-{
-    "meaning": "air"
-}
+aws lambda invoke --function-name PhobiaGetOne --payload '{ "meaning": "spider", "word": "arachnophobia" }' out
 ```
 +
-. Delete SAM
-+
+
+== Delete Lambda Function
+
 ```
 aws cloudformation delete-stack \
 --stack-name phobias-skill \
 --region us-west-1
 ```
-

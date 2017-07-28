@@ -10,7 +10,7 @@
 
 == Create Deployment Package
 
-. Create and upload a deployment package: `mvn -f books/pom.xml package install`
+. Create and upload a deployment package: `mvn -f phobias/pom.xml package install`
 
 == Deploy Lambda Function using Serverless Application Model (SAM)
 
@@ -25,14 +25,23 @@ aws cloudformation deploy \
 
 === GET
 
+. Get one
++
 ```
-aws lambda invoke --function-name PhobiaGetOne --payload '{ "meaning": "air" }' out
+aws lambda invoke --function-name PhobiasGetOne --payload '{ "meaning": "air" }' out
 ```
++
+. Get all
++
+```
+aws lambda invoke --function-name PhobiasGetAll out
+```
+
 
 === POST
 
 ```
-aws lambda invoke --function-name PhobiaGetOne --payload '{ "meaning": "spider", "word": "arachnophobia" }' out
+aws lambda invoke --function-name PhobiasGetOne --payload '{ "meaning": "spider", "word": "arachnophobia" }' out
 ```
 +
 

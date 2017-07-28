@@ -6,6 +6,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: org.sample.aws.serverless.phobias.PhobiaGetOne
+      FunctionName: PhobiaGetOne
       Runtime: java8
       CodeUri: s3://phobias-skill/phobias-1.0-SNAPSHOT.jar
       Description: Get one phobia
@@ -19,6 +20,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: org.sample.aws.serverless.phobias.PhobiaPost
+      FunctionName: PhobiaPost
       Runtime: java8
       CodeUri: s3://phobias-skill/phobias-1.0-SNAPSHOT.jar
       Description: Create one phobia

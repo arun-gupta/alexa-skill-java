@@ -43,7 +43,6 @@ aws lambda invoke --function-name PhobiasGetAll out
 ```
 aws lambda invoke --function-name PhobiasGetOne --payload '{ "meaning": "spider", "word": "arachnophobia" }' out
 ```
-+
 
 == Delete Lambda Function
 

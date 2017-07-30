@@ -1,0 +1,10 @@
+{
+  "intents": [
+    {
+      "intent": "PhobiaIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    }
+  ]
+}

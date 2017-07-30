@@ -1,5 +1,13 @@
 = Hello World using an Alexa Skill and Java
 
+== Pre-setup Alexa Skill
+
+. Create an account at http://developer.amazon.com and login
+. Select `Alexa`, `Alexa Skills Kit`, `Get Started >`, `Add a New Skill`
+. Use `Name` and `Invocation Name` as `Hello World`
+. Click on `Save`
+. Copy the `Application Id` and paste it in the `HelloWorldSpeechletRequestStreamHandler` class
+
 == Create Lambda function
 
 . Create bucket: `aws s3 mb s3://arungupta --region us-east-1`.
@@ -21,32 +29,16 @@ aws lambda create-function \
 +
 . Set up `Alexa Skills Kit` as a trigger for the Lambda function in the Console
 
-== Setup Alexa Skills
+== Setup Alexa Skill
 
-. Create an account at http://developer.amazon.com and login
-. Select `Alexa`, `Alexa Skills Kit`, `Get Started >`, `Add a New Skill`
-. Follow the instructions as explained at https://developer.amazon.com/alexa-skills-kit/alexa-skill-quick-start-tutorial. Specific details below.
-.. Use `Name` and `Invocation Name` as `Hello World`
-.. Deploy the Lambda function again
-... Copy the `Application Id` and paste it in `HelloWorldSpeechletRequestStreamHandler`
-... Build and upload the package again: `mvn -f hello-alexa-world/pom.xml package install`
-... Delete the previously created function:
-+
-```
-aws lambda delete-function \
---function-name HelloWorld \
---region us-east-1
-```
-+
-... Create the Lambda function again as explained above
-.. Click on `Next`
-.. Copy content of `IntentSchema.json` in `Intent Schema`
-.. Copy content of `SampleUtterances.txt` in `Sample Utterances`
-.. Click on `Next`
+. In developer.amazon.com tab, click on `Next`
+. Copy content of `IntentSchema.json` in `Intent Schema`
+. Copy content of `SampleUtterances.txt` in `Sample Utterances`
+. Click on `Next`
 .. Select `AWS Lambda ARN`, `North America`
 .. Get Function ARN: `aws lambda get-function --function-name HelloWorld --region us-east-1 | jq .Configuration.FunctionArn`
-.. Paste the ARN
-.. Click on `Next`
+. Paste the ARN
+. Click on `Next`
 
 == Test Alexa Skill
 
@@ -55,4 +47,8 @@ In `Service Simulator`, type `hello` in `Enter Utterance` and click on `Ask Hell
 image::images/alexa-skill-simulator.png[]
 
 Skill can also be tested at https://echosim.io/ or using Alexa Echo.
+
+== References
+
+. https://developer.amazon.com/alexa-skills-kit/alexa-skill-quick-start-tutorial[Detailed Tutorial]
 

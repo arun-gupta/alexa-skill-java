@@ -12,42 +12,38 @@
 
 . Create and upload a deployment package: `mvn -f phobias/pom.xml package install`
 
-== Deploy Lambda Function using Serverless Application Model (SAM)
+== Alexa Skills Kit
 
-```
-aws cloudformation deploy \
---template-file app-sam.yml \
---stack-name phobias-skill \
---region us-west-1
-```
+. Build Alexa Skills Kit for Java
+.. Fork and clone https://github.com/amzn/alexa-skills-kit-java
+.. Install locally: `mvn install`
 
-== Test Lambda Function
+== Skills Lambda Function
 
-=== GET
-
-. Get one
+. Create a package: `mvn package`. Alternatively, https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/deploying-a-sample-skill-to-aws-lambda#preparing-a-java-sample-to-deploy-in-lambda[tutorial] recommends: `mvn assembly:assembly -DdescriptorId=jar-with-dependencies package`
+. Upload to S3: `mvn install`
+. Create Lambda function:
 +
 ```
-aws lambda invoke --function-name PhobiasGetOne --payload '{ "meaning": "air" }' out
-```
-+
-. Get all
-+
-```
-aws lambda invoke --function-name PhobiasGetAll out
-```
-
-
-=== POST
-
-```
-aws lambda invoke --function-name PhobiasGetOne --payload '{ "meaning": "spider", "word": "arachnophobia" }' out
+aws lambda create-function \
+--function-name Hello \
+--runtime java8 \
+--memory-size 1024 \
+--timeout 30 \
+--region us-east-1 \
+--role arn:aws:iam::091144949931:role/lambda_basic_execution \
+--handler org.sample.aws.serverless.phobias.PhobiaSpeechletRequestStreamHandler \
+--zip-file fileb://./phobias/target/phobias-1.0-SNAPSHOT.jar \
+--publish
 ```
 
-== Delete Lambda Function
+== Alexa Skills Kit
 
-```
-aws cloudformation delete-stack \
---stack-name phobias-skill \
---region us-west-1
-```
+. Set up `Alexa Skills Kit` as a trigger for Lambda function in the Console
+. Get Function ARN: `aws lambda get-function --function-name Hello --region us-east-1 | jq .Configuration.FunctionArn`
+. Create an account at http://developer.amazon.com and login
+. Select `Alexa`, `Alexa Skills Kit`, `Get Started >`, `Add a New Skill`
+. Follow the instructions as explained at https://developer.amazon.com/alexa-skills-kit/alexa-skill-quick-start-tutorial.
+. Step #6 at https://github.com/arun-gupta/alexa-skills-kit-java/tree/master/samples/src/main/java/helloworld#alexa-skill-setup is critical to enable authorization.
+
+

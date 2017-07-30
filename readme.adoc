@@ -12,12 +12,6 @@
 
 . Create and upload a deployment package: `mvn -f phobias/pom.xml package install`
 
-== Alexa Skills Kit
-
-. Build Alexa Skills Kit for Java
-.. Fork and clone https://github.com/amzn/alexa-skills-kit-java
-.. Install locally: `mvn install`
-
 == Skills Lambda Function
 
 . Create a package: `mvn package`. Alternatively, https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/deploying-a-sample-skill-to-aws-lambda#preparing-a-java-sample-to-deploy-in-lambda[tutorial] recommends: `mvn assembly:assembly -DdescriptorId=jar-with-dependencies package`

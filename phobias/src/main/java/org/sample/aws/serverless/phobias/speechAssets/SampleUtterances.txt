@@ -1,7 +1,7 @@
-PhobiaIntent say hello
-PhobiaIntent say hello world
-PhobiaIntent hello
-PhobiaIntent say hi
-PhobiaIntent say hi world
-PhobiaIntent hi
-PhobiaIntent how are you
+HelloWorldIntent say hello
+HelloWorldIntent say hello world
+HelloWorldIntent hello
+HelloWorldIntent say hi
+HelloWorldIntent say hi world
+HelloWorldIntent hi
+HelloWorldIntent how are you

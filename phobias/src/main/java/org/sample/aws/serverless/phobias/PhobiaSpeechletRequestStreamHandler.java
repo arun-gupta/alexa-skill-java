@@ -21,7 +21,7 @@ public class PhobiaSpeechletRequestStreamHandler extends SpeechletRequestStreamH
          * This Id can be found on https://developer.amazon.com/edw/home.html#/ "Edit" the relevant
          * Alexa Skill and put the relevant Application Ids in this Set.
          */
-        supportedApplicationIds.add("amzn1.echo-sdk-ams.app.[unique-value-here]");
+        supportedApplicationIds.add("amzn1.ask.skill.292f5409-6876-4717-b632-e9faffa44e5c");
     }
 
     public PhobiaSpeechletRequestStreamHandler() {

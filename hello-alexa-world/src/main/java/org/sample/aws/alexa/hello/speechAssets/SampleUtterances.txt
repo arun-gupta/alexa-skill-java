@@ -1,4 +1,5 @@
 HelloWorldIntent say hello
+HelloWorldIntent say hello {howMany} times
 HelloWorldIntent say hello world
 HelloWorldIntent hello
 HelloWorldIntent say hi

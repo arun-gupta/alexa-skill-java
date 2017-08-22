@@ -1,7 +1,13 @@
 {
   "intents": [
     {
-      "intent": "HelloWorldIntent"
+      "intent": "HelloWorldIntent",
+      "slots": [
+          {
+            "name": "howMany",
+            "type": "AMAZON.NUMBER"
+          }
+      ]
     },
     {
       "intent": "AMAZON.HelpIntent"

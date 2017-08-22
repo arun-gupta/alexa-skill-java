@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.amazon.speech.slu.Intent;
+import com.amazon.speech.slu.Slot;
 import com.amazon.speech.speechlet.IntentRequest;
 import com.amazon.speech.speechlet.LaunchRequest;
 import com.amazon.speech.speechlet.Session;
@@ -48,7 +49,9 @@ public class HelloWorldSpeechlet implements Speechlet {
         String intentName = (intent != null) ? intent.getName() : null;
 
         if ("HelloWorldIntent".equals(intentName)) {
-            return getHelloResponse();
+            Slot slot = intent.getSlot("howMany");
+            Integer userName = (slot != null) ? Integer.parseInt(slot.getValue()) : 1;
+            return getHelloResponse(userName);
         } else if ("AMAZON.HelpIntent".equals(intentName)) {
             return getHelpResponse();
         } else {
@@ -93,9 +96,12 @@ public class HelloWorldSpeechlet implements Speechlet {
      *
      * @return SpeechletResponse spoken and visual response for the given intent
      */
-    private SpeechletResponse getHelloResponse() {
-        String speechText = "Hello world";
-
+    private SpeechletResponse getHelloResponse(int howMany) {
+        String speechText = "";
+        for (int i=0; i<howMany; i++) {
+            speechText += "Hello world " + (i+1) + " time. ";
+        }
+        
         // Create the Simple card content.
         SimpleCard card = new SimpleCard();
         card.setTitle("HelloWorld");

@@ -5,38 +5,22 @@
 . Create an account at http://developer.amazon.com and login
 . Select `Alexa`, `Alexa Skills Kit`, `Get Started >`, `Add a New Skill`
 . Use `Name` and `Invocation Name` as `Hello World`
-. Click on `Save`
-. Copy the `Application Id` and paste it in the `HelloWorldSpeechletRequestStreamHandler` class
+. Click on `Save`, `Next`
+. Copy the `Application Id` (from top left) and paste it in the `HelloWorldSpeechletRequestStreamHandler` class
 
 == Create Lambda function
 
-. Create bucket: `aws s3 mb s3://arungupta --region us-east-1`.
+. Create bucket: `aws s3 mb s3://alexa-java-skill --region us-east-1`.
 . Create and upload a deployment package: `mvn -f hello-alexa-world/pom.xml package install`
-. Create Lambda function:
-+
-```
-aws lambda create-function \
---function-name HelloWorld \
---runtime java8 \
---memory-size 1024 \
---timeout 30 \
---region us-east-1 \
---role arn:aws:iam::091144949931:role/lambda_basic_execution \
---handler org.sample.aws.alexa.hello.HelloWorldSpeechletRequestStreamHandler \
---zip-file fileb://./hello-alexa-world/target/hello-alexa-world-1.0-SNAPSHOT.jar \
---publish
-```
-+
-. Set up `Alexa Skills Kit` as a trigger for the Lambda function in the Console
 
 == Setup Alexa Skill
 
-. In developer.amazon.com tab, click on `Next`
+. In developer.amazon.com tab
 . Copy content of `IntentSchema.json` in `Intent Schema`
 . Copy content of `SampleUtterances.txt` in `Sample Utterances`
 . Click on `Next`
-.. Select `AWS Lambda ARN`, `North America`
-.. Get Function ARN: `aws lambda get-function --function-name HelloWorld --region us-east-1 | jq .Configuration.FunctionArn`
+.. Select `AWS Lambda ARN`\
+.. Get Function ARN: `aws lambda get-function --function-name HelloAlexaWorld --region us-west-1 | jq .Configuration.FunctionArn`
 . Paste the ARN
 . Click on `Next`
 

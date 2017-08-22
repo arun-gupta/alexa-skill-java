@@ -60,21 +60,41 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.bazaarvoice.maven.plugins</groupId>
-                <artifactId>s3-upload-maven-plugin</artifactId>
-                <version>1.4</version>
+                <groupId>com.github.seanroy</groupId>
+                <artifactId>lambda-maven-plugin</artifactId>
+                <version>2.2.2</version>
                 <configuration>
-                    <accessKey>${aws_access_key_id}</accessKey>
-                    <secretKey>${aws_secret_access_key}</secretKey>
-                    <bucketName>phobias-skill</bucketName>
-                    <source>target/${project.artifactId}-${project.version}.jar</source>
-                    <destination>${project.artifactId}-${project.version}.jar</destination>
+                    <functionCode>${project.basedir}/target/${project.artifactId}-${project.version}.jar</functionCode>
+                    <version>${project.version}</version>
+                    <s3Bucket>alexa-java-skill</s3Bucket>
+                    <region>us-east-1</region>
+                    <lambdaRoleArn>arn:aws:iam::091144949931:role/lambda_basic_execution</lambdaRoleArn>
+                    <publish>true</publish>
+
+                    <!-- default -->
+                    <runtime>java8</runtime>
+                    <memorySize>1024</memorySize>
+                    <timeout>30</timeout>
+                    <lambdaFunctionsJSON>
+                        [
+                          {
+                            "functionName": "HelloAlexaWorld",
+                            "description": "Hello Alexa World",
+                            "handler": "org.sample.aws.alexa.hello.HelloWorldSpeechletRequestStreamHandler",
+                            "triggers": [
+                              {
+                                "integration": "Alexa Skills Kit"
+                              }
+                            ]
+                          }
+                        ]
+                    </lambdaFunctionsJSON>
                 </configuration>
                 <executions>
                     <execution>
                         <phase>install</phase>
                         <goals>
-                            <goal>s3-upload</goal>
+                            <goal>deploy-lambda</goal>
                         </goals>
                     </execution>
                 </executions>

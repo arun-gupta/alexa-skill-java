@@ -50,8 +50,8 @@ public class HelloWorldSpeechlet implements Speechlet {
 
         if ("HelloWorldIntent".equals(intentName)) {
             Slot slot = intent.getSlot("howMany");
-            Integer userName = (slot != null) ? Integer.parseInt(slot.getValue()) : 1;
-            return getHelloResponse(userName);
+            Integer times = (slot != null && slot.getValue() != null) ? Integer.parseInt(slot.getValue()) : 1;
+            return getHelloResponse(times);
         } else if ("HelloWorldDbIntent".equals(intentName)) {
             Slot slot = intent.getSlot("id");
             String id = (slot != null) ? slot.getValue() : "1";
@@ -101,9 +101,9 @@ public class HelloWorldSpeechlet implements Speechlet {
      *
      * @return SpeechletResponse spoken and visual response for the given intent
      */
-    private SpeechletResponse getHelloResponse(int howMany) {
+    private SpeechletResponse getHelloResponse(int times) {
         String speechText = "";
-        for (int i=0; i<howMany; i++) {
+        for (int i=0; i<times; i++) {
             speechText += "Hello world " + (i+1) + " time. ";
         }
         

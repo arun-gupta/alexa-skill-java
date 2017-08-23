@@ -5,7 +5,7 @@
 . Create an account at http://developer.amazon.com and login
 . Select `Alexa`, `Alexa Skills Kit`, `Get Started >`, `Add a New Skill`
 . Use `Name` and `Invocation Name` as `Hello World`
-. Click on `Save`, `Next`
+. Click on `Save`
 . Copy the `Application Id` (from top left) and paste it in the `HelloWorldSpeechletRequestStreamHandler` class
 
 == Create Lambda function
@@ -15,22 +15,41 @@
 
 == Setup Alexa Skill
 
-. In developer.amazon.com tab
-. Copy content of `IntentSchema.json` in `Intent Schema`
-. Copy content of `SampleUtterances.txt` in `Sample Utterances`
-. Click on `Next`
-.. Select `AWS Lambda ARN`\
-.. Get Function ARN: `aws lambda get-function --function-name HelloAlexaWorld --region us-west-1 | jq .Configuration.FunctionArn`
-. Paste the ARN
+. On http://developer.amazon.com, click on `Next`
+.. Copy content of `IntentSchema.json` in `Intent Schema`
+.. Copy content of `SampleUtterances.txt` in `Sample Utterances`
+.. Click on `Next`
+.. Select `AWS Lambda ARN`
+.. Get Function ARN: `aws lambda get-function --function-name HelloAlexaWorld --region us-east-1 | jq .Configuration.FunctionArn` and paste it in the textbox labeled `Default`
 . Click on `Next`
 
 == Test Alexa Skill
 
-In `Service Simulator`, type `hello` in `Enter Utterance` and click on `Ask Hello World`. The output should look as shown.
+The different intents can be tested in `Service Simulator`.
 
-image::images/alexa-skill-simulator.png[]
+=== Hello
+
+Type `say hello` in `Enter Utterance` and click on `Ask Hello World`. The output should look as shown.
+
+image::images/intent1.png[]
+
+=== Hello World N times
+
+Type `say hello 3 times`:
+
+image::images/intent2.png[]
+
+=== Name of a person
+
+Type `what is the name of 1`:
+
+image::images/intent3.png[]
 
 Skill can also be tested at https://echosim.io/ or using Alexa Echo.
+
+. `Ask Hello World say hello`
+. `Ask Hello World say hello 3 times`
+. `Ask Hello World what is the name of 1`, `2` or `3`
 
 == References
 

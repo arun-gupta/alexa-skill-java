@@ -21,6 +21,12 @@
             <scope>compile</scope>
         </dependency>
         
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-dynamodb</artifactId>
+            <version>1.11.127</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -68,7 +74,7 @@
                     <version>${project.version}</version>
                     <s3Bucket>alexa-java-skill</s3Bucket>
                     <region>us-east-1</region>
-                    <lambdaRoleArn>arn:aws:iam::091144949931:role/lambda_basic_execution</lambdaRoleArn>
+                    <lambdaRoleArn>arn:aws:iam::091144949931:role/lambda_services</lambdaRoleArn>
                     <publish>true</publish>
 
                     <!-- default -->
@@ -77,16 +83,16 @@
                     <timeout>30</timeout>
                     <lambdaFunctionsJSON>
                         [
-                          {
-                            "functionName": "HelloAlexaWorld",
-                            "description": "Hello Alexa World",
-                            "handler": "org.sample.aws.alexa.hello.HelloWorldSpeechletRequestStreamHandler",
-                            "triggers": [
-                              {
-                                "integration": "Alexa Skills Kit"
-                              }
-                            ]
-                          }
+                        {
+                        "functionName": "HelloAlexaWorld",
+                        "description": "Hello Alexa World",
+                        "handler": "org.sample.aws.alexa.hello.HelloWorldSpeechletRequestStreamHandler",
+                        "triggers": [
+                        {
+                        "integration": "Alexa Skills Kit"
+                        }
+                        ]
+                        }
                         ]
                     </lambdaFunctionsJSON>
                 </configuration>

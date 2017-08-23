@@ -52,6 +52,11 @@ public class HelloWorldSpeechlet implements Speechlet {
             Slot slot = intent.getSlot("howMany");
             Integer userName = (slot != null) ? Integer.parseInt(slot.getValue()) : 1;
             return getHelloResponse(userName);
+        } else if ("HelloWorldDbIntent".equals(intentName)) {
+            Slot slot = intent.getSlot("id");
+            String id = (slot != null) ? slot.getValue() : "1";
+            Person person = DBUtil.getPerson(id);
+            return getHelloDbResponse(person, id);
         } else if ("AMAZON.HelpIntent".equals(intentName)) {
             return getHelpResponse();
         } else {
@@ -105,6 +110,26 @@ public class HelloWorldSpeechlet implements Speechlet {
         // Create the Simple card content.
         SimpleCard card = new SimpleCard();
         card.setTitle("HelloWorld");
+        card.setContent(speechText);
+
+        // Create the plain text output.
+        PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
+        speech.setText(speechText);
+
+        return SpeechletResponse.newTellResponse(speech, card);
+    }
+    
+    private SpeechletResponse getHelloDbResponse(Person person, String id) {
+        String speechText = "";
+        
+        if (person != null && person.getId() != null)
+            speechText = "Name of the person with id " + person.getId() + " is " + person.getName();
+        else
+            speechText = "No person found with id " + id;
+
+        // Create the Simple card content.
+        SimpleCard card = new SimpleCard();
+        card.setTitle("HelloDbWorld");
         card.setContent(speechText);
 
         // Create the plain text output.

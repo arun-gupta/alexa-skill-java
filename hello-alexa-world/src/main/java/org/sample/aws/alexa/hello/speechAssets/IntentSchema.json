@@ -10,6 +10,15 @@
       ]
     },
     {
+      "intent": "HelloWorldDbIntent",
+      "slots": [
+          {
+            "name": "id",
+            "type": "AMAZON.NUMBER"
+          }
+      ]
+    },
+    {
       "intent": "AMAZON.HelpIntent"
     }
   ]

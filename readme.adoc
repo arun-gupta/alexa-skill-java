@@ -25,7 +25,7 @@
 
 == Test Alexa Skill
 
-The different intents can be tested in `Service Simulator`.
+The different intents can be tested in `Service Simulator` or https://echosim.io.
 
 === Hello
 
